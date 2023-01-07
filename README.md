@@ -1,3 +1,6 @@
+![image](https://github.com/RIDWANE-EL-FILALI/PIPEX/blob/master/Web_Photo_Editor.jpg)
+
+
 # 👤INFO ABOUT THE PROJECT
 This project aims to deepen your understanding of the two concepts that you already know: Redirections and Pipes. It is an introductory project for the bigger UNIX projects that will appear later on in the cursus.
 
