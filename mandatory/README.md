@@ -83,6 +83,12 @@ get the process id for of current process
 ### GETPPID()
 get the parent process id of the current process
 
+## WHAT IS A PIPE ?
+
+A pipe is a section of shared memory meant to facilitate the communication between processes.
+it is a undirectional channel that has a read and write end.
+so a process can write to the write end of the pipe the data stored in memory buffer until it is read by another process from the pipes read end
+
 
 
 
