@@ -10,6 +10,8 @@ in this project you'll encounter alot of new concepts:
 
 
 but we wond start whit that we'll just start with basic functions and systeme calls and the logic behind the project :
+
+## LOGIC 
 ```
 ./pipex infile cmd1 cmd2 outfile
 
@@ -63,6 +65,24 @@ every command needs an stdin and out
   (end[1] becomes cmd1 stdout)                                                             cmd2 stdin)
 
 ```
+
+## PROCESS CONTROLLING IN C
+### FORK()
+When using the funtion fork() a child process gets born the fork funtion returns an id
+```
+int id = fork();
+```
+the id of the child process is always 0, you can calculate the number of child processes using the formula 2<sup>n</sup>
+keep in mind that when a process is duplicated the memory and open fd are duplicated too.
+it means that even the variables are duplicated but that does not mean that if one is changed the second will.
+The order of the processes is unpridectable so to solve this probleme that when the **wait()** comes in
+### WAIT()
+makes a process wait for the duplicated process(the child)
+### GETPID()
+get the process id for of current process
+### GETPPID()
+get the parent process id of the current process
+
 
 
 
