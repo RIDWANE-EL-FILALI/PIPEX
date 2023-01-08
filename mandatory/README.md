@@ -11,6 +11,8 @@ in this project you'll encounter alot of new concepts:
 
 but we wond start whit that we'll just start with basic functions and systeme calls and the logic behind the project :
 
+if you want to read the [subject](https://github.com/RIDWANE-EL-FILALI/PIPEX/blob/master/en.subject.pdf)
+
 ## LOGIC 
 ```
 ./pipex infile cmd1 cmd2 outfile
