@@ -134,7 +134,41 @@ The shell creates a pipe and two child processes, one for the `cat` command an
 
 ![image](https://github.com/RIDWANE-EL-FILALI/PIPEX/blob/master/img/shell_pipe_en.drawio.png)
 
-To reproduce this behaviour, we could duplicate the write end of the pipe over the standard output in the 
+To reproduce this behaviour, we could duplicate the write end of the pipe over the standard output in the first child, and the read end over the standard input of the second child. we've previously learnt about the **dup2** function that would allow us to do this in the article about file descriptors
+
+## CREATING A PIPELINE LIKE A SHELL
+Of course, a shell can string multiple commands together with the “`|`” operator. For example, we can do commands like `man bash | head -n 50 | grep shell | grep bash | wc -l`. This is called a pipeline.
+
+If we tried to use a single pipe for all of the child processes’ inputs and outputs in our endeavor to replicate this kind of pipeline, we’d quickly encounter big issues. Since the child processes are executed simultaneously, they will start fighting to read from and write to a single pipe. And one will inevitably end up waiting for input that will never arrive.
+
+To build a pipeline, then, we need to create a pipe (a pair of file descriptors) for each child process, minus 1. That way, the first child can write on its own pipe, the second can read from the first one’s and write to its own, and so on.
+
+![image](https://github.com/RIDWANE-EL-FILALI/PIPEX/blob/master/img/pipeline_diagram_en.drawio.png)
+
+## FILE DESCRIPTORS 
+in unix type systems a **file descriptor** is a small positive integer used as reference to an open file in a process. A process as we've seen in a previous article about processes ia a currently running program
+
+However from the operating system point of view a file is not a text file as we might think of it as a user a file can also be a directory or a i/o resource such as keyboard a screen a pipe, or a network socket
+by default, each process systematically inherits three open file descriptors
+
+| File descriptor| Name|<Unistd.h>|<stdio.h>|
+|--------------|------|-----------|----------|
+|0|Standard Input| STDIN_FILENO| stdin|
+|1|Standard Output| STDOUT_FILENO| stdout|
+|2|Standard Error| STDERR_FILENO| stderr|
+
+But why use file descriptors as identifiers? An integer is much simpler to process for a computer than a long path string to a file. What’s more, the reference to a file must contain much more than its location: it must also include its permissions, access mode, size, etc… And wouldn’t it be wasteful to keep several entire references to the same file if several processes opened it?
+
+So how does the operating system maintain all of the information about every open file?
+
+## THE SYSTEM'S REPRESENTATION OF OPEN FILES
+
+To represent open files, the system uses three data structures:
+
+* A **table of file descriptors** per process. Each process has its own table containing a series of indexes, each one referring to an entry in the open file table.
+* An **open file table** shared between all processes. each entry in this table contains, among other things, the access mode, an offset describing the current location within the file, and a pointer to the corresponding entry in the inode table. this table also kepps count of the number references there are to this file in all of the file descriptor tables of all processes. when a process closes the file, this reference count is decremented and if it gets to 0, the entry is deleted from the table
+* An **inode (index table) table** which is also shared between all processes. each entry in the inode table describes the file in detail: the path to its location on the disk, its size, its permissions, etc
+
 
 
 
