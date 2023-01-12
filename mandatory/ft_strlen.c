@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rel-fila <rel-fila@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 14:59:53 by rel-fila          #+#    #+#             */
-/*   Updated: 2023/01/10 15:00:13 by rel-fila         ###   ########.fr       */
+/*   Created: 2023/01/10 15:03:25 by rel-fila          #+#    #+#             */
+/*   Updated: 2023/01/10 15:03:28 by rel-fila         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	msg(char *err)
+size_t	ft_strlen(const char *s)
 {
-	write(2, err, ft_strlen(err));
-	return (1);
-}
+	size_t	i;
 
-void	msg_error(char *err)
-{
-	perror(err);
-	exit(1);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
