@@ -9,7 +9,6 @@ You can read the project's subject [here](https://github.com/RIDWANE-EL-FILALI/P
 # ⛓️LINKS
 These links will help you greatly but keep in mind that you should search beyond this repo :
 * [MANDATORY](https://github.com/RIDWANE-EL-FILALI/PIPEX/tree/master/mandatory)
-* [BONUS](https://github.com/RIDWANE-EL-FILALI/PIPEX/tree/master/bonus)
 
 # 🥇Badge
 ![image](https://github.com/RIDWANE-EL-FILALI/42_badges_1337/blob/master/pipexe.png)
